@@ -7,6 +7,7 @@ import pageObjects.homepage;
 import testBase.baseTestClass;
 import utilities.ExcelUtil;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,9 +38,22 @@ public class HotelCostsTest extends baseTestClass {
             HotelResultsPage hr = new HotelResultsPage(driver);
             String resultsCount = hr.getResultsCount();
             System.out.println("Total hotel results: " + resultsCount);
-           // hr.applyPoolFilter();
-            hr.refreshPage();
+
             List<WebElement> hotelCards = hr.getHotelCards();
+            List<String> afterSearch = new ArrayList<>();
+            for (WebElement card : hotelCards) {
+                afterSearch.add(card.getText());
+            }
+            hr.applyPoolFilter();
+            hr.refreshPage();
+
+            hotelCards = hr.getHotelCards();
+            List<String> afterPool = new ArrayList<>();
+
+            for (WebElement element : hotelCards) {
+                afterPool.add(element.getText());
+            }
+            hotelCards = hr.getHotelCards();
             if (hotelCards.isEmpty()) {
                 System.out.println("No hotel results found after applying Pool filter.");
             }
@@ -47,9 +61,18 @@ public class HotelCostsTest extends baseTestClass {
             System.out.println("Total hotel results after Pool filter: " + resultsCountAfterPool);
             hr.sortByTopReviewed();
             hr.refreshPage();
+
             hotelCards = hr.getHotelCards();
-            ExcelUtil.writeHotelData(hotelCards, "./Test Output/Hotel Details.xlsx");
-            driver.navigate().back();
+            List<String> afterTopReviewed = new ArrayList<>();
+            for (WebElement element : hotelCards) {
+                afterTopReviewed.add(element.getText());
+            }
+            hotelCards = hr.getHotelCards();
+            ExcelUtil.writeHotelData(hotelCards, "./excel-output/Hotel Details.xlsx");
+           List<List<String>> allLists = List.of(afterSearch, afterPool, afterTopReviewed);
+          ExcelUtil.writeHotelNames(allLists, "./excel-output/HotelSortedName.xlsx");
+
+        driver.navigate().back();
         logger.info("***** HotelCostsTest Completed  ****");
     }
 }

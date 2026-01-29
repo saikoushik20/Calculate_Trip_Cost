@@ -19,7 +19,7 @@ public class CruiseDetailsTest extends baseTestClass {
         logger.info("***** Cruise Details Test Completed ****");
     }
     @Test(priority = 2)
-    public void cruiseResultsPage() throws InterruptedException {
+    public void cruiseResultsPage() {
         logger.info("***** Starting Cruise Results Test ****");
         CruiseResultsPage cruiseResultsPage = new CruiseResultsPage(driver);
         cruiseResultsPage.switchToLastWindow();
@@ -37,7 +37,7 @@ public class CruiseDetailsTest extends baseTestClass {
         System.out.println("Cruise ID: " + cruiseId);
         System.out.println("Guest Capacity: " + guestCapacity + " members");
         System.out.println("Renovated Year: " + renovated);
-        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, "./Test Output/CruiseDetails.xlsx");
+        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, "./excel-output/CruiseDetails.xlsx");
         logger.info("***** Cruise Results Test Completed ****");
     }
 

@@ -1,6 +1,8 @@
 package utilities;
 
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebElement;
@@ -80,6 +82,32 @@ public class ExcelUtil {
             workbook.write(file);
             workbook.close();
             file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void writeHotelNames(List<List<String>> hotelNamesLists, String filePath) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Hotel Names");
+            Row headerRow = sheet.createRow(0);
+            String[] headers = {"After Searched", "After Pool Filter", "After Top Reviewed"};
+            for (int i = 0; i < headers.length; i++) {
+                headerRow.createCell(i).setCellValue(headers[i]);
+            }
+
+            int maxRows = hotelNamesLists.stream().mapToInt(List::size).max().orElse(0);
+            for (int rowIdx = 0; rowIdx < maxRows; rowIdx++) {
+                Row row = sheet.createRow(rowIdx + 1); // +1 to skip header
+                for (int colIdx = 0; colIdx < hotelNamesLists.size(); colIdx++) {
+                    List<String> names = hotelNamesLists.get(colIdx);
+                    if (rowIdx < names.size()) {
+                        row.createCell(colIdx).setCellValue(names.get(rowIdx));
+                    }
+                }
+            }
+            try (FileOutputStream fos = new FileOutputStream(filePath)) {
+                workbook.write(fos);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
