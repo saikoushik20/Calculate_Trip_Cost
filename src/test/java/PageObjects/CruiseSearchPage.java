@@ -1,4 +1,4 @@
-package pageObjects;
+package PageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import utilities.waits;
 
 import java.util.List;
 
-public class CruiseSearchPage extends basePage{
+public class CruiseSearchPage extends BasePage {
     public CruiseSearchPage(WebDriver driver) {
         super(driver);
     }

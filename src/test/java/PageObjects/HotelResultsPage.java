@@ -1,4 +1,4 @@
-package pageObjects;
+package PageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +8,10 @@ import utilities.waits;
 
 import java.util.List;
 
-
-public class HotelResultsPage extends basePage{
+public class HotelResultsPage extends BasePage {
     public HotelResultsPage(WebDriver driver)
     {
         super(driver);
-
     }
 
     @FindBy(xpath = "//div[contains(@class,'hotel-count-tip') and @role='heading']")
@@ -30,11 +28,10 @@ public class HotelResultsPage extends basePage{
 
     public String getResultsCount() {
         try {
-
             WebElement countElem = waits.waitForVisibility(driver, By.xpath("//div[contains(@class,'hotel-count-tip') and @role='heading']"), 10);
             return countElem.getAttribute("aria-label");
         } catch (Exception e) {
-            System.out.println("[DEBUG] Hotel results count element not found: " + e.getMessage());
+            System.out.println("Hotel results count element not found: " + e.getMessage());
             return "N/A";
         }
     }

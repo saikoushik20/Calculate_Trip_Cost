@@ -1,15 +1,14 @@
-package pageObjects;
+package PageObjects;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.waits;
 
 import java.util.*;
 
-public class homepage extends basePage{
+public class Homepage extends BasePage {
 
-    public homepage(WebDriver driver)
+    public Homepage(WebDriver driver)
     {
         super(driver);
     }

@@ -8,8 +8,8 @@
     <parameter name="browser" value="Chrome"/>
     <test verbose="2" preserve-order="true" name="Test1">
         <classes>
-            <class name="testClass.HotelCostsTest"/>
-            <class name="testClass.CruiseDetailsTest"/>
+            <class name="TestCases.HotelCostsTest"/>
+            <class name="TestCases.CruiseDetailsTest"/>
         </classes>
     </test>
 

@@ -1,12 +1,12 @@
-package testClass;
+package TestCases;
 
 import org.testng.annotations.Test;
-import pageObjects.CruiseResultsPage;
-import pageObjects.CruiseSearchPage;
-import testBase.baseTestClass;
+import PageObjects.CruiseResultsPage;
+import PageObjects.CruiseSearchPage;
+import BaseTest.BaseTestClass;
 import utilities.ExcelUtil;
 
-public class CruiseDetailsTest extends baseTestClass {
+public class CruiseDetailsTest extends BaseTestClass {
     @Test(priority = 1)
     public void cruiseDetailsPage() throws InterruptedException {
         logger.info("***** Starting Cruise Details Test ****");
@@ -37,7 +37,7 @@ public class CruiseDetailsTest extends baseTestClass {
         System.out.println("Cruise ID: " + cruiseId);
         System.out.println("Guest Capacity: " + guestCapacity + " members");
         System.out.println("Renovated Year: " + renovated);
-        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, "./excel-output/CruiseDetails.xlsx");
+        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, "./Excel Output/CruiseDetails.xlsx");
         logger.info("***** Cruise Results Test Completed ****");
     }
 
