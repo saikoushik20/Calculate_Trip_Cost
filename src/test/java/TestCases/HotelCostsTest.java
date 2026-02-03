@@ -62,7 +62,6 @@ public class HotelCostsTest extends BaseTestClass {
         System.out.println("Total hotel results after Pool filter: " + resultsCountAfterPool);
         hr.sortByTopReviewed();
         hr.refreshPage();
-
         hotelCards = hr.getHotelCards();
         List<String> afterTopReviewed = new ArrayList<>();
         for (WebElement element : hotelCards) {
@@ -71,9 +70,9 @@ public class HotelCostsTest extends BaseTestClass {
         hotelCards = hr.getHotelCards();
         ExcelUtil.writeHotelData(hotelCards, configProp.getProperty("Hotel-Details"));
         List<List<String>> allLists = List.of(afterSearch, afterPool, afterTopReviewed);
-        ExcelUtil.writeHotelNames(allLists, configProp.getProperty("Hotels-Sort-Verification-Excel"));//add file names to properties file
-
+        ExcelUtil.writeHotelNames(allLists, configProp.getProperty("Hotels-Sort-Verification-Excel"));
         driver.navigate().back();
+
         logger.info("***** HotelCostsTest Completed  ****");
     }
 }

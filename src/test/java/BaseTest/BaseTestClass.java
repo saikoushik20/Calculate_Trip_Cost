@@ -25,7 +25,7 @@ import java.util.Properties;
 public class BaseTestClass {
     public static WebDriver driver;
     public static Logger logger;
-    public Properties configProp;
+    public static Properties configProp;
 
     @BeforeSuite
     @Parameters({"browser","os"})
