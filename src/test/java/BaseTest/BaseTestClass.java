@@ -31,6 +31,7 @@ public class BaseTestClass {
     @Parameters({"browser","os"})
     public void setup(String browser, String os) {
         logger= LogManager.getLogger(this.getClass());
+
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver(options);

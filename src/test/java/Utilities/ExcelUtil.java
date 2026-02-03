@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.io.File;
@@ -32,17 +33,17 @@ public class ExcelUtil {
                 String price = "N/A";
                 String totalPrice = "N/A";
                 try {
-                    WebElement titleElement = card.findElement(org.openqa.selenium.By.xpath(".//div[contains(@class,'hotel-title')]//a"));
+                    WebElement titleElement = card.findElement(By.xpath(".//div[contains(@class,'hotel-title')]//a"));
                     title = titleElement.getText();
                 } catch (Exception ignored) {}
                 try {
-                    WebElement priceElement = card.findElement(org.openqa.selenium.By.xpath(".//div[contains(@class,'price-line')]//span"));
+                    WebElement priceElement = card.findElement(By.xpath(".//div[contains(@class,'price-line')]//span"));
                     price = priceElement.getText();
                 } catch (Exception ignored) {}
                 try {
-                    List<WebElement> totalPriceElement = card.findElements(org.openqa.selenium.By.xpath(".//p[contains(text(),'Total price')]"));
+                    List<WebElement> totalPriceElement = card.findElements(By.xpath(".//p[contains(text(),'Total price')]"));
                     if (!totalPriceElement.isEmpty()) {
-                        String totalDetails = totalPriceElement.get(0).getText();
+                        String totalDetails = totalPriceElement.getFirst().getText();
                         totalPrice = totalDetails.replaceAll("(?s).*?(₹\\s?[0-9,]+).*", "$1");
                     }
                 } catch (Exception ignored) {}
@@ -95,18 +96,24 @@ public class ExcelUtil {
                 headerRow.createCell(i).setCellValue(headers[i]);
             }
 
-            int maxRows = hotelNamesLists.stream().mapToInt(List::size).max().orElse(0);
-            for (int rowIdx = 0; rowIdx < maxRows; rowIdx++) {
-                Row row = sheet.createRow(rowIdx + 1); // +1 to skip header
-                for (int colIdx = 0; colIdx < hotelNamesLists.size(); colIdx++) {
-                    List<String> names = hotelNamesLists.get(colIdx);
-                    if (rowIdx < names.size()) {
-                        row.createCell(colIdx).setCellValue(names.get(rowIdx));
+
+            int maxRows = 0;
+            for (List<String> list : hotelNamesLists) {
+                if (list.size() > maxRows) {
+                    maxRows = list.size();
+                }
+            }
+            for (int rowIndex = 0; rowIndex < maxRows; rowIndex++) {
+                Row row = sheet.createRow(rowIndex + 1);
+                for (int colIndex = 0; colIndex < hotelNamesLists.size(); colIndex++) {
+                    List<String> names = hotelNamesLists.get(colIndex);
+                    if (rowIndex < names.size()) {
+                        row.createCell(colIndex).setCellValue(names.get(rowIndex));
                     }
                 }
             }
-            try (FileOutputStream fos = new FileOutputStream(filePath)) {
-                workbook.write(fos);
+            try (FileOutputStream file = new FileOutputStream(filePath)) {
+                workbook.write(file);
             }
         } catch (Exception e) {
             e.printStackTrace();

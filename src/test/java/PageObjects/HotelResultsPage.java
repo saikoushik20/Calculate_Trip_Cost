@@ -26,7 +26,6 @@ public class HotelResultsPage extends BasePage {
 
     public String getResultsCount() {
         try {
-//            WebElement countElem = waits.waitForVisibility(driver, By.xpath("//div[contains(@class,'hotel-count-tip') and @role='heading']"), 10);
             return resultsCount.getAttribute("aria-label");
         } catch (Exception e) {
             System.out.println("Hotel results count element not found: " + e.getMessage());

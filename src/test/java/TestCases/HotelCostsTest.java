@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class HotelCostsTest extends BaseTestClass {
 
     @Test (priority = 1)
@@ -43,6 +41,7 @@ public class HotelCostsTest extends BaseTestClass {
         System.out.println("Total hotel results: " + resultsCount);
 
         List<WebElement> hotelCards = hr.getHotelCards();
+
         List<String> afterSearch = new ArrayList<>();
         for (WebElement card : hotelCards) {
             afterSearch.add(card.getText());

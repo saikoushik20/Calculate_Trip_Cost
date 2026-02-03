@@ -13,8 +13,6 @@ public class Homepage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath="//i[contains(@class,'fi-close')]")
-    List<WebElement> closeButtons;
     @FindBy(id="destinationInput")
     WebElement destinationInput;
     @FindBy(id="checkInInput")
@@ -31,6 +29,8 @@ public class Homepage extends BasePage {
     WebElement confirmGuestsButton;
     @FindBy(xpath="//span[@class='tripui-online-btn-content-children ' and text()='Search']")
     WebElement finalSearch;
+    @FindBy(xpath="//i[contains(@class,'fi-close')]")
+    List<WebElement> closeButtons;
 
     public void closePopup() {
         try {

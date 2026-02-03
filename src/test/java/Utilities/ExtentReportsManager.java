@@ -29,9 +29,10 @@ public class ExtentReportsManager implements ITestListener {
         repName = "Test-Report-" + timeStamp + ".html";
         sparkReporter = new ExtentSparkReporter(".\\Extent Reports\\" + repName);
 
-        sparkReporter.config().setDocumentTitle("Trip Cost Calculate Report"); // Title of report
-        sparkReporter.config().setReportName("Trip Cost Calculate Testing"); // name of the report
+        sparkReporter.config().setDocumentTitle("Trip Cost Calculate Report");
+        sparkReporter.config().setReportName("Trip Cost Calculate Testing");
         sparkReporter.config().setTheme(Theme.STANDARD);
+        sparkReporter.config().setOfflineMode(true);
 
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
@@ -56,7 +57,7 @@ public class ExtentReportsManager implements ITestListener {
     public void onTestSuccess(ITestResult result) {
 
         test = extent.createTest(result.getTestClass().getName());
-        test.assignCategory(result.getMethod().getGroups()); // to display groups in report
+        test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS,result.getName()+" got successfully executed");
     }
 
