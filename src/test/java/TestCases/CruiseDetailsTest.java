@@ -18,7 +18,7 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruisePage.clickSearchButton();
         logger.info("***** Cruise Details Test Completed ****");
     }
-    @Test(priority = 2)
+    @Test(priority = 2 ,dependsOnMethods = {"cruiseDetailsPage"})
     public void cruiseResultsPage() {
         logger.info("***** Starting Cruise Results Test ****");
         CruiseResultsPage cruiseResultsPage = new CruiseResultsPage(driver);
@@ -27,17 +27,26 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruiseResultsPage.closeAllPopups();
         cruiseResultsPage.SelectTopReviewed();
         cruiseResultsPage.selectFirstCruiseProduct();
-        cruiseResultsPage.switchToLastWindow();
-        cruiseResultsPage.waitForCruiseDetailsPage();
-        String guestCapacity = cruiseResultsPage.getGuestCapacity();
-        String renovated = cruiseResultsPage.getRenovatedYear();
-        String cruiseId = cruiseResultsPage.getCruiseId();
+    }
+    @Test(priority = 3, dependsOnMethods = {"cruiseResultsPage"})
+    public void CruisesDetails(){
+        logger.info("***** Starting Selected Cruise Details Test ****");
+        CruiseResultsPage cruiseResultsP = new CruiseResultsPage(driver);
+        cruiseResultsP.switchToLastWindow();
+        cruiseResultsP.waitForCruiseDetailsPage();
+
+        String guestCapacity = cruiseResultsP.getGuestCapacity();
+        String renovated = cruiseResultsP.getRenovatedYear();
+        String cruiseId = cruiseResultsP.getCruiseId();
+
         logger.info("Guest capacity: {}", guestCapacity);
         logger.info("Renovated: {}", renovated);
         logger.info("Cruise ID: {}", cruiseId);
+
         System.out.println("Cruise ID: " + cruiseId);
         System.out.println("Guest Capacity: " + guestCapacity + " members");
         System.out.println("Renovated Year: " + renovated);
+
         ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, configProp.getProperty("Cruise-Details"));
         logger.info("***** Cruise Results Test Completed ****");
     }

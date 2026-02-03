@@ -96,7 +96,6 @@ public class ExcelUtil {
                 headerRow.createCell(i).setCellValue(headers[i]);
             }
 
-
             int maxRows = 0;
             for (List<String> list : hotelNamesLists) {
                 if (list.size() > maxRows) {

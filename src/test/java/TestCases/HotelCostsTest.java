@@ -12,6 +12,11 @@ import java.util.List;
 
 public class HotelCostsTest extends BaseTestClass {
 
+    List<String> afterSearch;
+    List<String> afterPool;
+    List<String> afterTopReviewed;
+
+
     @Test (priority = 1)
     public void HomepageDashboard () {
         String CurrentTime = "ID-" + java.time.LocalTime.now();
@@ -33,25 +38,25 @@ public class HotelCostsTest extends BaseTestClass {
         logger.info("***** Searched for required hotel details  ****");
     }
 
-    @Test (priority = 2)
+    @Test (priority = 2 , dependsOnMethods = {"HomepageDashboard"})
     public void hotelResultsPage() {
         logger.info("***** HotelResultsPage Started  ****");
         HotelResultsPage hr = new HotelResultsPage(driver);
         String resultsCount = hr.getResultsCount();
         System.out.println("Total hotel results: " + resultsCount);
-
         List<WebElement> hotelCards = hr.getHotelCards();
-
-        List<String> afterSearch = new ArrayList<>();
+        afterSearch = new ArrayList<>();
         for (WebElement card : hotelCards) {
             afterSearch.add(card.getText());
         }
+    }
+    @Test (priority = 3 ,dependsOnMethods = {"hotelResultsPage"})
+    public void hotelResultsAfterPoolFilter() {
+        HotelResultsPage hr = new HotelResultsPage(driver);
         hr.applyPoolFilter();
         hr.refreshPage();
-
-        hotelCards = hr.getHotelCards();
-        List<String> afterPool = new ArrayList<>();
-
+        List<WebElement> hotelCards = hr.getHotelCards();
+        afterPool = new ArrayList<>();
         for (WebElement element : hotelCards) {
             afterPool.add(element.getText());
         }
@@ -61,10 +66,15 @@ public class HotelCostsTest extends BaseTestClass {
         }
         String resultsCountAfterPool = hr.getResultsCount();
         System.out.println("Total hotel results after Pool filter: " + resultsCountAfterPool);
+    }
+
+    @Test (priority = 4 ,dependsOnMethods = {"hotelResultsAfterPoolFilter"})
+    public void TopReviewedHotelResults(){
+        HotelResultsPage hr = new HotelResultsPage(driver);
         hr.sortByTopReviewed();
         hr.refreshPage();
-        hotelCards = hr.getHotelCards();
-        List<String> afterTopReviewed = new ArrayList<>();
+        List<WebElement> hotelCards = hr.getHotelCards();
+        afterTopReviewed = new ArrayList<>();
         for (WebElement element : hotelCards) {
             afterTopReviewed.add(element.getText());
         }

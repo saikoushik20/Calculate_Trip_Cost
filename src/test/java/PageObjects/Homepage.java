@@ -58,7 +58,6 @@ public class Homepage extends BasePage {
         Waits.waitForElementToBeClickable(driver, checkOutInput, 10).click();
     }
 
-
     public void selectDate(int day) {
         Waits.waitForVisibility(driver, calendarTitle, 10);
         By daySelector = By.xpath("//li[@role='button' and not(contains(@class,'is-disable'))]//span[@class='day' and text()='" + day + "']");
@@ -66,8 +65,6 @@ public class Homepage extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", dateElement);
     }
-
-
 
     public void openGuestSelector() {
         Waits.waitForVisibility(driver, guestSelector, 10);
@@ -96,5 +93,4 @@ public class Homepage extends BasePage {
         assert btn != null;
         btn.click();
     }
-
 }
