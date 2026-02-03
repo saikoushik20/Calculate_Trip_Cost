@@ -44,13 +44,14 @@ public class CruiseResultsPage extends BasePage {
     public String getGuestCapacity() {
         try {
             Waits.waitForVisibility(driver, guestCapacityElem, 10);
-            String GuestCapacityText = renovatedYear.getText();
-            String GuestCapacity = GuestCapacityText.replace("Guest capacity:", "");
+            String GuestCapacityText = guestCapacityElem.getText();
+            String GuestCapacity = GuestCapacityText.replace("Guest capacity:", "").trim();
             return GuestCapacity.trim();
         } catch (Exception e) {
             return "N/A";
         }
     }
+
     public String getRenovatedYear() {
         try {
             Waits.waitForVisibility(driver, renovatedYear, 10);
