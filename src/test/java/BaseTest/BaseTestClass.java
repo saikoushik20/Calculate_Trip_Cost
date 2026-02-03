@@ -27,21 +27,16 @@ public class BaseTestClass {
     public static Logger logger;
     public Properties configProp;
 
-
-
     @BeforeSuite
     @Parameters({"browser","os"})
     public void setup(String browser, String os) {
         logger= LogManager.getLogger(this.getClass());
-
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver(options);
-
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
             driver = new EdgeDriver(options);
-
         } else {
             logger.error("Browser not supported: ", browser);
             System.out.println("Invalid browser! Supported browsers are: chrome, edge.");
@@ -67,15 +62,13 @@ public class BaseTestClass {
         }
     }
 
-    public String captureScreen(String tname) throws IOException {
-
+    public String captureScreen(String tName) throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        String targetFilePath=System.getProperty("user.dir")+"\\Screenshots\\" + tname + "_" + timeStamp + ".png";
+        String targetFilePath=System.getProperty("user.dir")+"\\Failed Screenshots\\" + tName + "_" + timeStamp + ".png";
         File targetFile=new File(targetFilePath);
         sourceFile.renameTo(targetFile);
         return targetFilePath;
-
     }
 }

@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import PageObjects.CruiseResultsPage;
 import PageObjects.CruiseSearchPage;
 import BaseTest.BaseTestClass;
-import utilities.ExcelUtil;
+import Utilities.ExcelUtil;
 
 public class CruiseDetailsTest extends BaseTestClass {
     @Test(priority = 1)
@@ -25,6 +25,7 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruiseResultsPage.switchToLastWindow();
         cruiseResultsPage.waitForCruiseProductList();
         cruiseResultsPage.closeAllPopups();
+        cruiseResultsPage.SelectTopReviewed();
         cruiseResultsPage.selectFirstCruiseProduct();
         cruiseResultsPage.switchToLastWindow();
         cruiseResultsPage.waitForCruiseDetailsPage();
@@ -37,10 +38,9 @@ public class CruiseDetailsTest extends BaseTestClass {
         System.out.println("Cruise ID: " + cruiseId);
         System.out.println("Guest Capacity: " + guestCapacity + " members");
         System.out.println("Renovated Year: " + renovated);
-        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, "./Excel Output/CruiseDetails.xlsx");
+        ExcelUtil.writeCruiseData(guestCapacity, renovated, cruiseId, configProp.getProperty("Cruise-Details"));
         logger.info("***** Cruise Results Test Completed ****");
     }
-
 }
 
 

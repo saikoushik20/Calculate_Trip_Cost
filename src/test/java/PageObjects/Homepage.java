@@ -2,7 +2,7 @@ package PageObjects;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import utilities.waits;
+import Utilities.Waits;
 
 import java.util.*;
 
@@ -49,20 +49,20 @@ public class Homepage extends BasePage {
     }
 
     public void openCheckInDate() {
-        waits.waitForVisibility(driver, checkInInput, 10);
-        waits.waitForElementToBeClickable(driver, checkInInput, 10).click();
+        Waits.waitForVisibility(driver, checkInInput, 10);
+        Waits.waitForElementToBeClickable(driver, checkInInput, 10).click();
     }
 
     public void openCheckOutDate() {
-        waits.waitForVisibility(driver, checkOutInput, 10);
-        waits.waitForElementToBeClickable(driver, checkOutInput, 10).click();
+        Waits.waitForVisibility(driver, checkOutInput, 10);
+        Waits.waitForElementToBeClickable(driver, checkOutInput, 10).click();
     }
 
 
     public void selectDate(int day) {
-        waits.waitForVisibility(driver, calendarTitle, 10);
+        Waits.waitForVisibility(driver, calendarTitle, 10);
         By daySelector = By.xpath("//li[@role='button' and not(contains(@class,'is-disable'))]//span[@class='day' and text()='" + day + "']");
-        WebElement dateElement = waits.waitForElementToBeClickable(driver, daySelector, 10);
+        WebElement dateElement = Waits.waitForElementToBeClickable(driver, daySelector, 10);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", dateElement);
     }
@@ -70,29 +70,29 @@ public class Homepage extends BasePage {
 
 
     public void openGuestSelector() {
-        waits.waitForVisibility(driver, guestSelector, 10);
-        WebElement guestElem = waits.waitForElementToBeClickable(driver, guestSelector, 10);
+        Waits.waitForVisibility(driver, guestSelector, 10);
+        WebElement guestElem = Waits.waitForElementToBeClickable(driver, guestSelector, 10);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", guestElem);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", guestElem);
     }
 
     public void addAdults(int count){
         for (int i = 0; i < count; i++) {
-            WebElement addBtn = waits.waitForElementToBeClickable(driver, addAdultsButton, 10);
+            WebElement addBtn = Waits.waitForElementToBeClickable(driver, addAdultsButton, 10);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", addBtn);
         }
     }
 
     public void confirmGuests() {
-        WebElement btn = waits.waitForElementToBeClickable(driver, confirmGuestsButton, 10);
+        WebElement btn = Waits.waitForElementToBeClickable(driver, confirmGuestsButton, 10);
         assert btn != null;
         btn.click();
-        waits.waitForInvisibility(driver, confirmGuestsButton, 10);
+        Waits.waitForInvisibility(driver, confirmGuestsButton, 10);
     }
 
     public void clickSearch() {
-        WebElement btn = waits.waitForElementToBeClickable(driver, finalSearch, 10);
+        WebElement btn = Waits.waitForElementToBeClickable(driver, finalSearch, 10);
         assert btn != null;
         btn.click();
     }

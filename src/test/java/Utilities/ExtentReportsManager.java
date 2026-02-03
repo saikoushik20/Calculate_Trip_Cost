@@ -1,4 +1,4 @@
-package utilities;
+package Utilities;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class extentReportsManager implements ITestListener {
+public class ExtentReportsManager implements ITestListener {
     public ExtentSparkReporter sparkReporter;
     public static ExtentReports extent;
     public static ExtentTest test;

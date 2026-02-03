@@ -5,10 +5,11 @@ import org.testng.annotations.Test;
 import PageObjects.HotelResultsPage;
 import PageObjects.Homepage;
 import BaseTest.BaseTestClass;
-import utilities.ExcelUtil;
+import Utilities.ExcelUtil;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 public class HotelCostsTest extends BaseTestClass {
@@ -68,9 +69,9 @@ public class HotelCostsTest extends BaseTestClass {
             afterTopReviewed.add(element.getText());
         }
         hotelCards = hr.getHotelCards();
-        ExcelUtil.writeHotelData(hotelCards, "./Excel Output/Hotel Details.xlsx");
+        ExcelUtil.writeHotelData(hotelCards, configProp.getProperty("Hotel-Details"));
         List<List<String>> allLists = List.of(afterSearch, afterPool, afterTopReviewed);
-        ExcelUtil.writeHotelNames(allLists, "./Excel Output/HotelSortedName.xlsx");//add file names to properties file
+        ExcelUtil.writeHotelNames(allLists, configProp.getProperty("Hotels-Sort-Verification-Excel"));//add file names to properties file
 
         driver.navigate().back();
         logger.info("***** HotelCostsTest Completed  ****");

@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <listeners>
-        <listener class-name="utilities.extentReportsManager"/>
+        <listener class-name="Utilities.ExtentReportsManager"/>
     </listeners>
     <parameter name="os" value="Windows"/>
     <parameter name="browser" value="Chrome"/>
-    <test verbose="2" preserve-order="true" name="Test1">
+    <test verbose="2" preserve-order="true" name="Test">
         <classes>
             <class name="TestCases.HotelCostsTest"/>
             <class name="TestCases.CruiseDetailsTest"/>
