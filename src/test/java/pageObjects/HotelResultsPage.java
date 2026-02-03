@@ -13,10 +13,9 @@ public class HotelResultsPage extends basePage{
     public HotelResultsPage(WebDriver driver)
     {
         super(driver);
-        // ...existing code...
+
     }
 
-    // Updated selector to be more robust (try a generic heading or fallback to xpath)
     @FindBy(xpath = "//div[contains(@class,'hotel-count-tip') and @role='heading']")
     WebElement resultsCount;
     @FindBy(xpath="//div[contains(@class,'style_radio-item__6Kt3T') and @role='checkbox' and @aria-label='Pool']")
@@ -31,7 +30,7 @@ public class HotelResultsPage extends basePage{
 
     public String getResultsCount() {
         try {
-            // Wait for the element to be visible before accessing
+
             WebElement countElem = waits.waitForVisibility(driver, By.xpath("//div[contains(@class,'hotel-count-tip') and @role='heading']"), 10);
             return countElem.getAttribute("aria-label");
         } catch (Exception e) {

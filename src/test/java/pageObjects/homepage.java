@@ -59,11 +59,7 @@ public class homepage extends basePage{
         waits.waitForElementToBeClickable(driver, checkOutInput, 10).click();
     }
 
-//    public void selectDate(int day) {
-//        waits.waitForVisibility(driver, calendarTitle, 10);
-//        By daySelector = By.xpath("//li[@role='button' and not(contains(@class,'is-disable'))]//span[@class='day' and text()='" + day + "']");
-//        waits.waitForElementToBeClickable(driver, daySelector, 10).click();
-//    }
+
     public void selectDate(int day) {
         waits.waitForVisibility(driver, calendarTitle, 10);
         By daySelector = By.xpath("//li[@role='button' and not(contains(@class,'is-disable'))]//span[@class='day' and text()='" + day + "']");
