@@ -9,14 +9,15 @@ import Utilities.ExcelUtil;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
 
 
 public class HotelCostsTest extends BaseTestClass {
 
     @Test (priority = 1)
-    public void homepageDashboard () {
-        logger.info("***** Starting HotelCostsTest  ****");
+    public void HomepageDashboard () {
+        String CurrentTime = "ID-" + java.time.LocalTime.now();
+        logger.info("{} --- Starting HotelCostsTest - HomepageDashboard --- ", CurrentTime);
         Homepage hp = new Homepage(driver);
         hp.closePopup();
         hp.enterDestination("Nairobi");
@@ -33,6 +34,7 @@ public class HotelCostsTest extends BaseTestClass {
         driver.manage().deleteAllCookies();
         logger.info("***** Searched for required hotel details  ****");
     }
+
     @Test (priority = 2)
     public void hotelResultsPage() {
         logger.info("***** HotelResultsPage Started  ****");
