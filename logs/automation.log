@@ -127,3 +127,14 @@
 2026-02-03 14:10:23 INFO  HotelCostsTest:36 - Renovated: 2024
 2026-02-03 14:10:23 INFO  HotelCostsTest:37 - Cruise ID: 123873
 2026-02-03 14:10:23 INFO  HotelCostsTest:42 - ***** Cruise Results Test Completed ****
+2026-02-03 14:36:11 INFO  HotelCostsTest:19 - ***** Starting HotelCostsTest  ****
+2026-02-03 14:36:28 INFO  HotelCostsTest:34 - ***** Searched for required hotel details  ****
+2026-02-03 14:36:28 INFO  HotelCostsTest:38 - ***** HotelResultsPage Started  ****
+2026-02-03 14:36:43 INFO  HotelCostsTest:76 - ***** HotelCostsTest Completed  ****
+2026-02-03 14:36:43 INFO  HotelCostsTest:12 - ***** Starting Cruise Details Test ****
+2026-02-03 14:37:15 INFO  HotelCostsTest:19 - ***** Cruise Details Test Completed ****
+2026-02-03 14:37:15 INFO  HotelCostsTest:23 - ***** Starting Cruise Results Test ****
+2026-02-03 14:37:30 INFO  HotelCostsTest:35 - Guest capacity: Renovated:2024
+2026-02-03 14:37:30 INFO  HotelCostsTest:36 - Renovated: 2024
+2026-02-03 14:37:30 INFO  HotelCostsTest:37 - Cruise ID: 123873
+2026-02-03 14:37:31 INFO  HotelCostsTest:42 - ***** Cruise Results Test Completed ****
