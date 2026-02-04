@@ -6,7 +6,7 @@
     </listeners>
     <parameter name="os" value="Windows"/>
     <parameter name="browser" value="Chrome"/>
-    <test verbose="2" preserve-order="true" name="Test">
+    <test verbose="2"  name="Test">
         <classes>
             <class name="TestCases.HotelCostsTest"/>
             <class name="TestCases.CruiseDetailsTest"/>

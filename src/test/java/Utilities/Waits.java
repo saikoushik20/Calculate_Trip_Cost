@@ -19,23 +19,23 @@ public class Waits {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public static WebElement waitForVisibility(WebDriver driver, WebElement element, int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+    public static void waitForVisibility(WebDriver driver, WebElement element, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static WebElement waitForVisibility(WebDriver driver, By locator, int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+    public static void waitForVisibility(WebDriver driver, By locator, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public static boolean waitForInvisibility(WebDriver driver, WebElement element, int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+    public static void waitForInvisibility(WebDriver driver, WebElement element, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.invisibilityOf(element));
     }
 
-    public static boolean waitForUrlContains(WebDriver driver, String urlFragment, int seconds) {
-        return new WebDriverWait(driver, Duration.ofSeconds(seconds))
+    public static void waitForUrlContains(WebDriver driver, String urlFragment, int seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds))
                 .until(ExpectedConditions.urlContains(urlFragment));
     }
 }
