@@ -40,7 +40,7 @@ public class ExtentReportsManager implements ITestListener {
         extent.setSystemInfo("Module", "Admin");
         extent.setSystemInfo("Sub Module", "Customers");
         extent.setSystemInfo("User Name", System.getProperty("user.name"));
-        extent.setSystemInfo("Environemnt", "QA");
+        extent.setSystemInfo("Environment", "QA");
 
         String os = testContext.getCurrentXmlTest().getParameter("os");
         extent.setSystemInfo("Operating System", os);
@@ -55,7 +55,6 @@ public class ExtentReportsManager implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult result) {
-
         test = extent.createTest(result.getTestClass().getName());
         test.assignCategory(result.getMethod().getGroups());
         test.log(Status.PASS,result.getName()+" got successfully executed");
@@ -71,7 +70,6 @@ public class ExtentReportsManager implements ITestListener {
         try {
             String imgPath = new BaseTestClass().captureScreen(result.getName());
             test.addScreenCaptureFromPath(imgPath);
-
         } catch (IOException e1) {
             e1.printStackTrace();
         }

@@ -8,7 +8,7 @@ import Utilities.ExcelUtil;
 
 public class CruiseDetailsTest extends BaseTestClass {
     @Test(priority = 1)
-    public void cruiseDetailsPage() throws InterruptedException {
+    public void cruisesDashboard() throws InterruptedException {
         logger.info("***** Starting Cruise Details Test ****");
         CruiseSearchPage cruisePage = new CruiseSearchPage(driver);
         cruisePage.goToCruiseMenu();
@@ -18,8 +18,8 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruisePage.clickSearchButton();
         logger.info("***** Cruise Details Test Completed ****");
     }
-    @Test(priority = 2 ,dependsOnMethods = {"cruiseDetailsPage"})
-    public void cruiseResultsPage() {
+    @Test(priority = 2 ,dependsOnMethods = {"cruisesDashboard"})
+    public void cruisesResultsPage() {
         logger.info("***** Starting Cruise Results Test ****");
         CruiseResultsPage cruiseResultsPage = new CruiseResultsPage(driver);
         cruiseResultsPage.switchToLastWindow();
@@ -28,9 +28,9 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruiseResultsPage.SelectTopReviewed();
         cruiseResultsPage.selectFirstCruiseProduct();
     }
-    @Test(priority = 3, dependsOnMethods = {"cruiseResultsPage"})
+    @Test(priority = 3, dependsOnMethods = {"cruisesResultsPage"})
     public void CruisesDetails(){
-        logger.info("***** Starting Selected Cruise Details Test ****");
+        logger.info("***** Selected Cruise Details ****");
         CruiseResultsPage cruiseResultsP = new CruiseResultsPage(driver);
         cruiseResultsP.switchToLastWindow();
         cruiseResultsP.waitForCruiseDetailsPage();

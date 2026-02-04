@@ -16,7 +16,6 @@ public class HotelCostsTest extends BaseTestClass {
     List<String> afterPool;
     List<String> afterTopReviewed;
 
-
     @Test (priority = 1)
     public void HomepageDashboard () {
         String CurrentTime = "ID-" + java.time.LocalTime.now();
