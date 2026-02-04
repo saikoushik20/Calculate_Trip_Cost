@@ -22,7 +22,7 @@ public class HotelCostsTest extends BaseTestClass {
         logger.info("{} --- Starting HotelCostsTest - HomepageDashboard --- ", CurrentTime);
         Homepage hp = new Homepage(driver);
         hp.closePopup();
-        hp.enterDestination("Nairobi");
+        hp.enterDestination("New York");
         hp.openCheckInDate();
         LocalDate checkIn = LocalDate.now().plusDays(1);
         hp.selectDate(checkIn.getDayOfMonth());
