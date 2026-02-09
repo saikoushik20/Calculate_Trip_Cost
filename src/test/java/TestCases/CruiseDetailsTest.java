@@ -1,5 +1,6 @@
 package TestCases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import PageObjects.CruiseResultsPage;
 import PageObjects.CruiseSearchPage;
@@ -11,6 +12,7 @@ public class CruiseDetailsTest extends BaseTestClass {
     public void cruisesDashboard() throws InterruptedException {
         logger.info("***** Starting Cruise Details Test ****");
         CruiseSearchPage cruisePage = new CruiseSearchPage(driver);
+        Assert.assertTrue(driver.getTitle().contains("Trip.com"), "Homepage not loaded correctly!");
         cruisePage.goToCruiseMenu();
         cruisePage.closeAllPopups();
         cruisePage.selectDepartureCity("Abu Dhabi");
@@ -36,8 +38,11 @@ public class CruiseDetailsTest extends BaseTestClass {
         cruiseResultsP.waitForCruiseDetailsPage();
 
         String guestCapacity = cruiseResultsP.getGuestCapacity();
+        Assert.assertFalse(guestCapacity.isBlank(), "Guest capacity is blank!");
         String renovated = cruiseResultsP.getRenovatedYear();
+        Assert.assertFalse(renovated.isBlank(), "Renovated year is blank!");
         String cruiseId = cruiseResultsP.getCruiseId();
+        Assert.assertFalse(cruiseId.isBlank(), "Cruise ID is blank!");
 
         logger.info("Guest capacity: {}", guestCapacity);
         logger.info("Renovated: {}", renovated);

@@ -1,6 +1,7 @@
 package TestCases;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import PageObjects.HotelResultsPage;
 import PageObjects.Homepage;
@@ -21,8 +22,9 @@ public class HotelCostsTest extends BaseTestClass {
         String CurrentTime = "ID-" + java.time.LocalTime.now();
         logger.info("{} --- Starting HotelCostsTest - HomepageDashboard --- ", CurrentTime);
         Homepage hp = new Homepage(driver);
+        Assert.assertTrue(driver.getTitle().contains("Trip.com"), "Homepage not loaded correctly!");
         hp.closePopup();
-        hp.enterDestination("New York");
+        hp.enterDestination("Nairobi");
         hp.openCheckInDate();
         LocalDate checkIn = LocalDate.now().plusDays(1);
         hp.selectDate(checkIn.getDayOfMonth());
@@ -43,6 +45,7 @@ public class HotelCostsTest extends BaseTestClass {
         HotelResultsPage hr = new HotelResultsPage(driver);
         String resultsCount = hr.getResultsCount();
         System.out.println("Total hotel results: " + resultsCount);
+        Assert.assertNotNull(resultsCount, "Results count is null!");
         List<WebElement> hotelCards = hr.getHotelCards();
         afterSearch = new ArrayList<>();
         for (WebElement card : hotelCards) {
@@ -62,6 +65,7 @@ public class HotelCostsTest extends BaseTestClass {
         hotelCards = hr.getHotelCards();
         if (hotelCards.isEmpty()) {
             System.out.println("No hotel results found after applying Pool filter.");
+            Assert.fail();
         }
         String resultsCountAfterPool = hr.getResultsCount();
         System.out.println("Total hotel results after Pool filter: " + resultsCountAfterPool);
@@ -73,6 +77,7 @@ public class HotelCostsTest extends BaseTestClass {
         hr.sortByTopReviewed();
         hr.refreshPage();
         List<WebElement> hotelCards = hr.getHotelCards();
+        Assert.assertFalse(hotelCards.isEmpty(), "No hotel cards found after sorting by Top Reviewed!");
         afterTopReviewed = new ArrayList<>();
         for (WebElement element : hotelCards) {
             afterTopReviewed.add(element.getText());
