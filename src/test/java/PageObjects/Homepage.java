@@ -31,6 +31,8 @@ public class Homepage extends BasePage {
     WebElement finalSearch;
     @FindBy(xpath="//i[contains(@class,'fi-close')]")
     List<WebElement> closeButtons;
+    @FindBy(xpath="//div[@class='hBD91TxW6Uv2IEd2ZK_X']/div/div[@class='KPcnGfJAicIvGoo_H8ra']")
+    WebElement roomsAndGuests;
 
     public void closePopup() {
         try {
@@ -93,4 +95,20 @@ public class Homepage extends BasePage {
         assert btn != null;
         btn.click();
     }
+    public String getRoomsAndGuests() {
+        return roomsAndGuests.getText();
+    }
+    public String getDestination()  {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].value;", destinationInput);
+    }
+    public String getCheckinDate(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].value;", checkInInput);
+    }
+    public String getCheckoutDate() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].value;", checkOutInput);
+    }
+
 }
